@@ -1,0 +1,451 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CardPilot | Credit Card Command Centre</title>
+    <meta name="description" content="Manage credit cards, track cashback, and optimize your rewards with CardPilot.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">C</div>
+            <span>cardpilot<span class="brand-dot">.</span></span>
+        </div>
+
+        <div class="workspace-label">WORKSPACE</div>
+
+        <nav class="navigation">
+            <a href="#" class="nav-link active" data-page="dashboard">
+                <span>▦</span> Overview
+            </a>
+            <a href="#" class="nav-link" data-page="cards">
+                <span>▣</span> My Cards
+            </a>
+            <a href="#" class="nav-link" data-page="transactions">
+                <span>↗</span> Transactions
+            </a>
+            <a href="#" class="nav-link" data-page="rewards">
+                <span>✧</span> Rewards & Benefits
+            </a>
+            <a href="#" class="nav-link" data-page="smart">
+                <span>⌁</span> Smart Card Selector
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="help-card">
+                <div class="help-icon">✦</div>
+                <strong>Meet CardPilot AI</strong>
+                <p>Manage your cards through Claude using our MCP connection.</p>
+                <span class="coming-soon">MCP INTEGRATION</span>
+            </div>
+            <div class="profile">
+                <div class="avatar">P</div>
+                <div>
+                    <strong>Parita Mendapara</strong>
+                    <small>Personal Account</small>
+                </div>
+                <span class="profile-menu">•••</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <div class="breadcrumb">Workspace / <span id="breadcrumb-page">Overview</span></div>
+                <h1 id="page-title">Good evening, Parita 👋</h1>
+                <p class="subtitle" id="page-subtitle">
+                    Here's what's happening with your credit cards.
+                </p>
+            </div>
+
+            <div class="topbar-actions">
+                <button class="icon-button" title="Notifications">♧</button>
+                <button class="primary-button" id="add-transaction-btn">
+                    <span>＋</span> Add transaction
+                </button>
+            </div>
+        </header>
+
+        <!-- DASHBOARD PAGE -->
+        <section class="page active-page" id="dashboard-page">
+
+            <div class="welcome-banner">
+                <div>
+                    <div class="banner-tag">YOUR FINANCIAL SNAPSHOT</div>
+                    <h2>Make every swipe<br>count.</h2>
+                    <p>Stay on top of your spending, rewards and card benefits.</p>
+                    <button class="banner-button" data-go="smart">Find the best card <span>→</span></button>
+                </div>
+                <div class="banner-decoration">
+                    <div class="floating-card">
+                        <div class="mini-card-top">
+                            <span>cardpilot.</span>
+                            <span>◉</span>
+                        </div>
+                        <div class="chip">▦</div>
+                        <div class="mini-card-number">•••• &nbsp; •••• &nbsp; •••• &nbsp; 4291</div>
+                        <div class="mini-card-bottom">
+                            <span>PARITA MENDAPARA</span>
+                            <span>VISA</span>
+                        </div>
+                    </div>
+                    <div class="banner-circle"></div>
+                </div>
+            </div>
+
+            <!-- STATS -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-heading">
+                        <span>Total monthly spending</span>
+                        <span class="stat-icon purple">↗</span>
+                    </div>
+                    <h2 id="total-spending">₹28,450</h2>
+                    <div class="stat-foot"><span class="neutral">This month</span></div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-heading">
+                        <span>Rewards earned</span>
+                        <span class="stat-icon green">✧</span>
+                    </div>
+                    <h2 id="total-rewards">₹1,245</h2>
+                    <div class="stat-foot"><span class="positive">Estimated value</span></div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-heading">
+                        <span>Active credit cards</span>
+                        <span class="stat-icon blue">▣</span>
+                    </div>
+                    <h2 id="total-cards">03</h2>
+                    <div class="stat-foot"><span class="neutral">Across 3 issuers</span></div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-heading">
+                        <span>Upcoming payments</span>
+                        <span class="stat-icon orange">◷</span>
+                    </div>
+                    <h2 id="upcoming-payments">₹8,500</h2>
+                    <div class="stat-foot"><span class="warning">Next 7 days</span></div>
+                </div>
+            </div>
+
+            <!-- CHART AND CARD -->
+            <div class="content-grid">
+
+                <div class="panel spending-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Spending overview</h3>
+                            <p>Your spending by category</p>
+                        </div>
+                        <span class="period-pill">November 2026 ▾</span>
+                    </div>
+
+                    <div class="chart-area">
+                        <div class="chart-bars" id="spending-chart">
+                            <div class="bar-group">
+                                <div class="bar" style="height:85%"></div>
+                                <span>Shopping</span>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar" style="height:52%"></div>
+                                <span>Food</span>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar" style="height:38%"></div>
+                                <span>Travel</span>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar" style="height:28%"></div>
+                                <span>Bills</span>
+                            </div>
+                            <div class="bar-group">
+                                <div class="bar" style="height:20%"></div>
+                                <span>Others</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-legend">
+                        <span><i class="legend-dot"></i> Spending distribution</span>
+                        <strong id="chart-total">₹28,450 total</strong>
+                    </div>
+                </div>
+
+                <div class="panel reward-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Rewards snapshot</h3>
+                            <p>Your estimated rewards</p>
+                        </div>
+                        <span class="reward-sparkle">✧</span>
+                    </div>
+
+                    <div class="reward-highlight">
+                        <span>Total reward value</span>
+                        <h2 id="reward-highlight">₹1,245</h2>
+                        <small>Across your registered cards</small>
+                    </div>
+
+                    <div class="reward-row">
+                        <span>Cashback</span>
+                        <strong>₹845</strong>
+                    </div>
+                    <div class="reward-row">
+                        <span>Reward points value</span>
+                        <strong>₹400</strong>
+                    </div>
+                    <button class="text-button" data-go="rewards">Explore all rewards →</button>
+                </div>
+            </div>
+
+            <!-- LOWER GRID -->
+            <div class="content-grid lower-grid">
+
+                <div class="panel transactions-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Recent transactions</h3>
+                            <p>Your latest card activity</p>
+                        </div>
+                        <button class="text-button" data-go="transactions">View all →</button>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>MERCHANT</th>
+                                    <th>CATEGORY</th>
+                                    <th>CARD</th>
+                                    <th>AMOUNT</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recent-transactions"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="panel bills-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Upcoming payments</h3>
+                            <p>Stay ahead of your due dates</p>
+                        </div>
+                        <span class="calendar-icon">▦</span>
+                    </div>
+                    <div id="bill-list"></div>
+                </div>
+
+            </div>
+
+            <footer class="footer">
+                <span>© 2026 CardPilot. Made for smarter spending.</span>
+                <span>Demo environment · Sample financial data</span>
+            </footer>
+
+        </section>
+
+        <!-- MY CARDS PAGE -->
+        <section class="page" id="cards-page">
+            <div class="page-intro">
+                <div>
+                    <h2>Your card portfolio</h2>
+                    <p>Manage your credit cards and their reward rules.</p>
+                </div>
+                <button class="primary-button" id="add-card-btn">＋ Add a card</button>
+            </div>
+            <div class="cards-grid" id="cards-grid"></div>
+        </section>
+
+        <!-- TRANSACTIONS PAGE -->
+        <section class="page" id="transactions-page">
+            <div class="page-intro">
+                <div>
+                    <h2>Transaction history</h2>
+                    <p>Keep track of every purchase across your cards.</p>
+                </div>
+                <button class="primary-button" id="transactions-add-btn">＋ Add transaction</button>
+            </div>
+            <div class="panel">
+                <div class="filter-row">
+                    <input id="transaction-search" type="search" placeholder="Search merchant or category...">
+                    <select id="category-filter">
+                        <option value="all">All categories</option>
+                        <option>Shopping</option>
+                        <option>Food</option>
+                        <option>Travel</option>
+                        <option>Bills</option>
+                        <option>Others</option>
+                    </select>
+                </div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>MERCHANT</th>
+                                <th>CATEGORY</th>
+                                <th>CARD</th>
+                                <th>DATE</th>
+                                <th>AMOUNT</th>
+                            </tr>
+                        </thead>
+                        <tbody id="all-transactions"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- REWARDS PAGE -->
+        <section class="page" id="rewards-page">
+            <div class="page-intro">
+                <div>
+                    <h2>Rewards & benefits</h2>
+                    <p>See the value you're getting from your cards.</p>
+                </div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-heading">Estimated cashback</div>
+                    <h2>₹845</h2>
+                    <div class="stat-foot">This month</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-heading">Reward points value</div>
+                    <h2>₹400</h2>
+                    <div class="stat-foot">Illustrative estimate</div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-heading">
+                    <div>
+                        <h3>Annual fee waiver progress</h3>
+                        <p>Track your spending against configured fee waiver thresholds.</p>
+                    </div>
+                </div>
+                <div id="fee-waiver-list"></div>
+            </div>
+        </section>
+
+        <!-- SMART SELECTOR PAGE -->
+        <section class="page" id="smart-page">
+            <div class="page-intro">
+                <div>
+                    <h2>Smart Card Selector</h2>
+                    <p>Compare your registered cards before making a purchase.</p>
+                </div>
+            </div>
+            <div class="panel selector-panel">
+                <div class="selector-intro">
+                    <div class="selector-icon">✧</div>
+                    <h2>Find your best card.</h2>
+                    <p>Enter a purchase amount and category to compare estimated rewards.</p>
+                </div>
+                <div class="selector-form">
+                    <label>Purchase amount (₹)</label>
+                    <input type="number" id="purchase-amount" min="1" placeholder="e.g. 15000" value="15000">
+                    <label>Purchase category</label>
+                    <select id="purchase-category">
+                        <option>Shopping</option>
+                        <option>Food</option>
+                        <option>Travel</option>
+                        <option>Bills</option>
+                        <option>Others</option>
+                    </select>
+                    <button class="primary-button full-button" id="compare-btn">Compare my cards →</button>
+                </div>
+                <div id="comparison-results"></div>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<!-- ADD TRANSACTION MODAL -->
+<div class="modal-overlay" id="transaction-modal">
+    <div class="modal">
+        <div class="modal-heading">
+            <div>
+                <h2>Add transaction</h2>
+                <p>Record a new credit card expense.</p>
+            </div>
+            <button class="close-button" data-close="transaction-modal">×</button>
+        </div>
+
+        <form id="transaction-form">
+            <label>Merchant name</label>
+            <input id="merchant-input" required placeholder="e.g. Amazon">
+
+            <label>Amount (₹)</label>
+            <input id="amount-input" type="number" min="1" required placeholder="e.g. 5000">
+
+            <label>Category</label>
+            <select id="category-input">
+                <option>Shopping</option>
+                <option>Food</option>
+                <option>Travel</option>
+                <option>Bills</option>
+                <option>Others</option>
+            </select>
+
+            <label>Credit card</label>
+            <select id="card-input"></select>
+
+            <label>Date</label>
+            <input id="date-input" type="date" required>
+
+            <div class="modal-actions">
+                <button type="button" class="secondary-button" data-close="transaction-modal">Cancel</button>
+                <button type="submit" class="primary-button">Save transaction</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- ADD CARD MODAL -->
+<div class="modal-overlay" id="card-modal">
+    <div class="modal">
+        <div class="modal-heading">
+            <div>
+                <h2>Add a credit card</h2>
+                <p>Register a card in your CardPilot wallet.</p>
+            </div>
+            <button class="close-button" data-close="card-modal">×</button>
+        </div>
+        <form id="card-form">
+            <label>Card name / variant</label>
+            <input id="new-card-name" required placeholder="e.g. HDFC Millennia">
+            <label>Issuer</label>
+            <input id="new-card-issuer" required placeholder="e.g. HDFC Bank">
+            <label>Last four digits (optional)</label>
+            <input id="new-card-last4" maxlength="4" pattern="[0-9]{4}" placeholder="4291">
+            <label>Annual fee (₹)</label>
+            <input id="new-card-fee" type="number" min="0" value="0">
+            <label>Annual fee waiver threshold (₹)</label>
+            <input id="new-card-threshold" type="number" min="0" value="0">
+            <div class="modal-actions">
+                <button type="button" class="secondary-button" data-close="card-modal">Cancel</button>
+                <button type="submit" class="primary-button">Add card</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
