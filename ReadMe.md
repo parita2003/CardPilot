@@ -2,8 +2,7 @@ CARDPILOT
 
 Architecture & Implementation Notes
 
-Volopay | Product & Tech Assignment
-Founder: Parita Mendapara
+
 
 Live Application: https://cardpilot-vimz.onrender.com/
 GitHub Repository: https://github.com/parita2003/CardPilot
